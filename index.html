@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Çekiliş Sonucu</title>
+  <title>Giveaway Result</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -31,12 +31,51 @@
       font-weight: bold;
       color: #00ffcc;
     }
+    p {
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body>
+
   <div class="box">
-    <h1>🎉 Çekiliş Kazananı 🎉</h1>
+    <h1 id="title"></h1>
     <div class="winner">moteoe</div>
+    <p id="subtitle"></p>
   </div>
+
+  <script>
+    const lang = navigator.language.toLowerCase();
+
+    const texts = {
+      tr: {
+        title: "🎉 Çekiliş Kazananı 🎉",
+        subtitle: "Tebrikler! Kazanan açıklanmıştır."
+      },
+      en: {
+        title: "🎉 Giveaway Winner 🎉",
+        subtitle: "Congratulations! The winner has been announced."
+      },
+      de: {
+        title: "🎉 Gewinnspiel-Gewinner 🎉",
+        subtitle: "Glückwunsch! Der Gewinner wurde bekannt gegeben."
+      },
+      ru: {
+        title: "🎉 Победитель розыгрыша 🎉",
+        subtitle: "Поздравляем! Победитель объявлен."
+      }
+    };
+
+    let selected = texts.en; // default English
+
+    if (lang.startsWith("tr")) selected = texts.tr;
+    else if (lang.startsWith("de")) selected = texts.de;
+    else if (lang.startsWith("ru")) selected = texts.ru;
+    else if (lang.startsWith("en")) selected = texts.en;
+
+    document.getElementById("title").innerText = selected.title;
+    document.getElementById("subtitle").innerText = selected.subtitle;
+  </script>
+
 </body>
 </html>
